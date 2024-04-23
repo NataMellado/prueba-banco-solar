@@ -1,6 +1,3 @@
-// Constante para la url
-const URL = "https://banco-solar-xogz.onrender.com";
-
 // Función para mostrar la información de un usuario en el modal
 const setInfoModal = (nombre, balance, id) => {
   $("#nombreEdit").val(nombre);
@@ -17,7 +14,7 @@ const editUsuario = async (id) => {
   const balance = $("#balanceEdit").val();
   try {
     const { data } = await axios.put(
-      `${URL}/usuario?id=${id}`,
+      `/usuario?id=${id}`,
       { nombre: name, balance }
     ); 
     $("#exampleModal").modal("hide");
@@ -36,7 +33,7 @@ $("form:first").submit(async (e) => {
   let nombre = $("#nombre").val();
   let balance = Number($("#balance").val());
   try {
-    const response = await fetch(`${URL}/usuario`, {
+    const response = await fetch(`/usuario`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nombre, balance }),
@@ -63,7 +60,7 @@ $("form:last").submit(async (e) => {
     return false;
   }
   try {
-    const response = await fetch(`${URL}/transferencia`, {
+    const response = await fetch(`/transferencia`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ emisor, receptor, monto }),
@@ -81,7 +78,7 @@ $("form:last").submit(async (e) => {
 
 // Función para obtener los usuarios
 const getUsuarios = async () => {
-  const response = await fetch(`${URL}/usuarios`);
+  const response = await fetch(`/usuarios`);
   let data = await response.json();
   $(".usuarios").html("");
 
@@ -112,7 +109,7 @@ const getUsuarios = async () => {
 // Función para eliminar un usuario
 const eliminarUsuario = async (id) => {
   try {
-      const response = await fetch(`${URL}/usuario?id=${id}`, {
+      const response = await fetch(`/usuario?id=${id}`, {
           method: "DELETE",
       });
       const message = await response.text();
@@ -129,7 +126,7 @@ const eliminarUsuario = async (id) => {
 
 // Función para obtener las transferencias
 const getTransferencias = async () => {
-  const { data } = await axios.get(`${URL}/transferencias`);
+  const { data } = await axios.get(`/transferencias`);
   $(".transferencias").html("");
 
   data.forEach((t) => {
