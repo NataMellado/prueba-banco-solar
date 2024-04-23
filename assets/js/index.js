@@ -27,11 +27,11 @@ const editUsuario = async (id) => {
 
 
 
-// Función para eliminar un usuario
+// Función para añadir un nuevo usuario
 $("form:first").submit(async (e) => {
   e.preventDefault();
-  let nombre = $("form:first input:first").val();
-  let balance = Number($("form:first input:nth-child(2)").val());
+  let nombre = $("#nombre").val();
+  let balance = Number($("#balance").val());
   try {
     const response = await fetch("http://localhost:3000/usuario", {
       method: "post",
