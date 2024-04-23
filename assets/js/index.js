@@ -17,7 +17,7 @@ const editUsuario = async (id) => {
   const balance = $("#balanceEdit").val();
   try {
     const { data } = await axios.put(
-      `${baseUrl}/usuario?id=${id}`,
+      `${URL}/usuario?id=${id}`,
       { nombre: name, balance }
     ); 
     $("#exampleModal").modal("hide");
@@ -36,7 +36,7 @@ $("form:first").submit(async (e) => {
   let nombre = $("#nombre").val();
   let balance = Number($("#balance").val());
   try {
-    const response = await fetch(`${baseUrl}/usuario`, {
+    const response = await fetch(`${URL}/usuario`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nombre, balance }),
@@ -63,7 +63,7 @@ $("form:last").submit(async (e) => {
     return false;
   }
   try {
-    const response = await fetch(`${baseUrl}/transferencia`, {
+    const response = await fetch(`${URL}/transferencia`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ emisor, receptor, monto }),
@@ -81,7 +81,7 @@ $("form:last").submit(async (e) => {
 
 // Función para obtener los usuarios
 const getUsuarios = async () => {
-  const response = await fetch(`${baseUrl}/usuarios`);
+  const response = await fetch(`${URL}/usuarios`);
   let data = await response.json();
   $(".usuarios").html("");
 
@@ -112,7 +112,7 @@ const getUsuarios = async () => {
 // Función para eliminar un usuario
 const eliminarUsuario = async (id) => {
   try {
-      const response = await fetch(`${baseUrl}/usuario?id=${id}`, {
+      const response = await fetch(`${URL}/usuario?id=${id}`, {
           method: "DELETE",
       });
       const message = await response.text();
@@ -129,7 +129,7 @@ const eliminarUsuario = async (id) => {
 
 // Función para obtener las transferencias
 const getTransferencias = async () => {
-  const { data } = await axios.get(`${baseUrl}/transferencias`);
+  const { data } = await axios.get(`${URL}/transferencias`);
   $(".transferencias").html("");
 
   data.forEach((t) => {
