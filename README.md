@@ -1,5 +1,8 @@
 # Prueba - Banco Solar
 
+La aplicación ha sido desplegada en Render y está disponible en el siguiente enlace:
+[https://banco-solar-jqn3.onrender.com/](https://banco-solar-jqn3.onrender.com/)
+
 En esta prueba se validan los siguientes conocimientos:
 
 - Conectar una base de datos PostgreSQL con Node
