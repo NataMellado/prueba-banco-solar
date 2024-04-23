@@ -1,3 +1,6 @@
+// Constante para la url
+const URL = "https://banco-solar-xogz.onrender.com";
+
 // Función para mostrar la información de un usuario en el modal
 const setInfoModal = (nombre, balance, id) => {
   $("#nombreEdit").val(nombre);
@@ -14,7 +17,7 @@ const editUsuario = async (id) => {
   const balance = $("#balanceEdit").val();
   try {
     const { data } = await axios.put(
-      `http://localhost:3000/usuario?id=${id}`,
+      `${baseUrl}/usuario?id=${id}`,
       { nombre: name, balance }
     ); 
     $("#exampleModal").modal("hide");
@@ -33,7 +36,7 @@ $("form:first").submit(async (e) => {
   let nombre = $("#nombre").val();
   let balance = Number($("#balance").val());
   try {
-    const response = await fetch("http://localhost:3000/usuario", {
+    const response = await fetch(`${baseUrl}/usuario`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nombre, balance }),
@@ -60,7 +63,7 @@ $("form:last").submit(async (e) => {
     return false;
   }
   try {
-    const response = await fetch("http://localhost:3000/transferencia", {
+    const response = await fetch(`${baseUrl}/transferencia`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ emisor, receptor, monto }),
@@ -78,7 +81,7 @@ $("form:last").submit(async (e) => {
 
 // Función para obtener los usuarios
 const getUsuarios = async () => {
-  const response = await fetch("http://localhost:3000/usuarios");
+  const response = await fetch(`${baseUrl}/usuarios`);
   let data = await response.json();
   $(".usuarios").html("");
 
@@ -109,7 +112,7 @@ const getUsuarios = async () => {
 // Función para eliminar un usuario
 const eliminarUsuario = async (id) => {
   try {
-      const response = await fetch(`http://localhost:3000/usuario?id=${id}`, {
+      const response = await fetch(`${baseUrl}/usuario?id=${id}`, {
           method: "DELETE",
       });
       const message = await response.text();
@@ -126,7 +129,7 @@ const eliminarUsuario = async (id) => {
 
 // Función para obtener las transferencias
 const getTransferencias = async () => {
-  const { data } = await axios.get("http://localhost:3000/transferencias");
+  const { data } = await axios.get(`${baseUrl}/transferencias`);
   $(".transferencias").html("");
 
   data.forEach((t) => {
